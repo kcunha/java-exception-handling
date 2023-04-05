@@ -17,19 +17,27 @@ class FibonacciServiceImplTest {
     Exception ex = assertThrows(FibonacciException.class, () -> fibonacciService.fibonacci("23"));
     Assertions.assertEquals("The position cannot be over 15", ex.getMessage());
 
-    Exception numbersException = assertThrows(FibonacciException.class, () -> fibonacciService.fibonacci("a"));
+    Exception numbersException =
+        assertThrows(FibonacciException.class, () -> fibonacciService.fibonacci("a"));
     Assertions.assertEquals("Only numbers are accepted", numbersException.getMessage());
   }
 
   @Test
-  void createSequence()throws IOException, FibonacciException {
+  void createSequence() throws IOException, FibonacciException {
     Assertions.assertTrue(fibonacciService.createSequence("3").contains("fibonacci.txt"));
   }
 
   @Test
-  void getSequence()throws FileNotFoundException {
+  void getSequence() throws FileNotFoundException {
     assertFalse(fibonacciService.getSequence("fibonacci.txt").isEmpty());
 
     assertThrows(FileNotFoundException.class, () -> fibonacciService.getSequence("a.txt"));
+  }
+
+  @Test
+  void getRatioTest() throws FibonacciException {
+    assertThrows(FibonacciException.class, () -> fibonacciService.getRatio("1"));
+    assertEquals("0",fibonacciService.getRatio("0"));
+    assertEquals("1",fibonacciService.getRatio("2"));
   }
 }
