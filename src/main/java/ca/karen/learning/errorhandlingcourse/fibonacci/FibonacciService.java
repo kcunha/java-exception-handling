@@ -9,4 +9,6 @@ public interface FibonacciService {
   String createSequence(String n) throws IOException, FibonacciException;
 
   String getSequence(String fileName) throws FileNotFoundException;
+
+  String getRatio(String n) throws FibonacciException;
 }

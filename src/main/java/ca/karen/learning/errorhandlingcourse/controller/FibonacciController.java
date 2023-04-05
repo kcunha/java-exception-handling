@@ -53,4 +53,16 @@ public class FibonacciController {
     }
     return ResponseEntity.ok(sequence);
   }
+
+  @GetMapping("findRation")
+  public ResponseEntity<String> getRatio(@RequestParam String n){
+    String ratio;
+    try{
+      ratio = fibonacci.getRatio(n);
+    }catch (FibonacciException e){
+      return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED).body(e.getMessage());
+    }
+
+    return ResponseEntity.ok(ratio);
+  }
 }

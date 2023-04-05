@@ -44,6 +44,19 @@ public class FibonacciServiceImpl implements FibonacciService {
     return getSequenceFromFile(fileName);
   }
 
+  @Override
+  public String getRatio(String n) throws FibonacciException {
+    int dividend = fibonacci(n);
+    int divisor = fibonacci(String.valueOf(Integer.parseInt(n)-1));
+    int ratio;
+    try{
+      ratio =  dividend/divisor;
+    }catch (ArithmeticException e){
+      throw new FibonacciException("Division not allowed");
+    }
+    return String.valueOf(ratio);
+  }
+
   private String getSequenceFromFile(String fileName) throws FileNotFoundException {
     BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
